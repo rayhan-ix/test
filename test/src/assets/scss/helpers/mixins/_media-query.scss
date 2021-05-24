@@ -1,0 +1,17 @@
+@mixin between_max_height_width($height, $width) {
+  @if ($width == null && $height == null) {
+    @error 'Height or Width is required';
+  } @else if($width == null) {
+    @media screen and (max-device-height: #{$height}px) {
+      @content;
+    }
+  } @else if($height == null) {
+    @media screen and (max-device-width: #{$width}px) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-device-width: #{$width}px) and (max-device-height: #{$height}px) {
+      @content;
+    }
+  }
+}
